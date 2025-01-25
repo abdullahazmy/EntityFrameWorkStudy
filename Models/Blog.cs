@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace EFCore2.Models
+﻿namespace EFCore2.Models
 {
     public class Blog
     {
@@ -16,6 +14,7 @@ namespace EFCore2.Models
         //[MaxLength(150)]
         public string Url { get; set; }
 
+        //[Comment("This is a comment in the database, behind Posts")]
         public List<Post> Posts { get; set; }
     }
 }

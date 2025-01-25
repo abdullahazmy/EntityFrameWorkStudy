@@ -37,8 +37,11 @@ namespace EFCore2
             {
                 eb.Property(b => b.Url).HasColumnType("varchar(150)");
                 eb.Property(b => b.Url).IsRequired();
-                eb.Property(b=> b.Url).HasMaxLength(200); // sets the max length of the column
-                // makes the column not nullable
+                eb.Property(b => b.Url).HasMaxLength(200); // sets the max length of the column
+                                                           // makes the column not nullable
+
+                // adds a comment to the column
+                eb.Property(b => b.Url).HasComment("This is a comment in the database, behind Posts");
             });
 
         }
