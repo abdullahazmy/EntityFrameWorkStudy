@@ -9,28 +9,13 @@ namespace EFCore2
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseSqlServer(ConnectionString);
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-            //modelBuilder.Entity<Blog>();
-
-
-            /// < Changes the name of Post Table into posts using Fluent API> ///
-            //modelBuilder.Entity<Post>().ToTable("Posts");
-
-
-            // learn this??
-            //modelBuilder.Entity<Post>().Property(p => p.Title).HasColumnName("PostTitle");
+            modelBuilder.Entity<Post>();
 
             // changes the table name to Posts and the schema to Blogging
             modelBuilder.Entity<Post>().ToTable("Posts", schema: "Blogging");
-
-
-            // changes the column name to PostTitle
-            //modelBuilder.Entity<Blog>()
-            //    .Property(b => b.Url).HasColumnName("BlogUrl");
-
 
             // changes the data type of the column to varchar(150)
             modelBuilder.Entity<Blog>(eb =>
@@ -44,8 +29,15 @@ namespace EFCore2
                 eb.Property(b => b.Url).HasComment("This is a comment in the database, behind Posts");
             });
 
+
+            // changes to be a primary key using fluentAPI and chaging it's namme
+            modelBuilder.Entity<Book>(ev =>
+            {
+                ev.HasKey(e => e.BookKey).HasName("PK_Book");
+            });
         }
 
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }
