@@ -15,6 +15,8 @@
         public string Url { get; set; }
 
         //[Comment("This is a comment in the database, behind Posts")]
-        public List<Post> Posts { get; set; }
+        //public List<Post> Posts { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

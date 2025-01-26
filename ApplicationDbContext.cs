@@ -27,6 +27,8 @@ namespace EFCore2
 
                 // adds a comment to the column
                 eb.Property(b => b.Url).HasComment("This is a comment in the database, behind Posts");
+
+                eb.Property(b => b.Date).HasDefaultValueSql("getdate()");
             });
 
 
@@ -35,9 +37,25 @@ namespace EFCore2
             {
                 ev.HasKey(e => e.BookKey).HasName("PK_Book");
             });
+
+            modelBuilder.Entity<Author>(eb =>
+            {
+                eb.Property(b => b.DisplayName).
+                HasComputedColumnSql("[L_name] + ', ' + [F_name]");
+            });
+
+
+            // Same of what i did on the Category.cs file but using FluentAPI
+            modelBuilder.Entity<Category>(eb =>
+            {
+                eb.Property(b => b.CategoryId).ValueGeneratedOnAdd();
+            });
         }
+
+
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
