@@ -11,6 +11,10 @@ namespace EFCore2.Models
         public byte CategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Category> Categories { get; set; }
+
+        public Book Books { get; set; }
+
+        //[ForeignKey("FK_BookID")]
+        public int BookID { get; set; }
     }
 }

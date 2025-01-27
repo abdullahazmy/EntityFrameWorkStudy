@@ -7,5 +7,7 @@
         public int BookKey { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+        public Category Category { get; set; }
+
     }
 }

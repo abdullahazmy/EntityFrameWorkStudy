@@ -50,6 +50,11 @@ namespace EFCore2
             {
                 eb.Property(b => b.CategoryId).ValueGeneratedOnAdd();
             });
+
+            modelBuilder.Entity<Category>()
+                .HasOne<Book>(s => s.Books)
+                .WithOne(ad => ad.Category)
+                .HasForeignKey<Category>(ad => ad.BookID);
         }
 
 
